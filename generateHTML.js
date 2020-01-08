@@ -10,7 +10,7 @@
 //   });
 // }
 
-const generateHTML = (managerArray, employeeCards) => {
+const generateHTML = (managerArray, engineerCards, internCards) => {
   return `<!DOCTYPE html>
 <html lang="en">
    <head>
@@ -32,8 +32,8 @@ const generateHTML = (managerArray, employeeCards) => {
               <h3>${managerArray[0].officeNumber}</h3>
             </div>
 
-            ${employeeCards}
-
+            ${engineerCards}
+            ${internCards}
           </div>
           <br>
       </div>

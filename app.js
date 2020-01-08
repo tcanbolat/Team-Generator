@@ -4,49 +4,21 @@ const Employee = require("./lib/Employee");
 const Manager = require("./lib/Manager");
 const Engineer = require("./lib/Engineer");
 const Intern = require("./lib/Intern");
+const managerQ = require("./lib/managerquestionset");
+const engineerQ = require("./lib/engineerquestionset");
+const internQ = require("./lib/internquestionset");
+
 // const util = require("util");
 const fs = require("fs");
 const generateHTML = require("./generateHTML");
 
 const managerArray = [];
-const employeeArray = [];
+const engineerArray = [];
+const internArray = [];
 
 askForManager = () => {
   return inquirer
-    .prompt([
-      {
-        type: "input",
-        name: "name",
-        message: "What is the Manager's Name?",
-        validate: function(val) {
-          return /[a-z]/i.test(val);
-        }
-      },
-      {
-        type: "input",
-        name: "idnumber",
-        message: this.name,
-        validate: function(val) {
-          return /[1-9]/i.test(val);
-        }
-      },
-      {
-        type: "input",
-        name: "email",
-        message: this.name,
-        validate: function(val) {
-          return /[a-z1-9]/i.test(val);
-        }
-      },
-      {
-        type: "input",
-        name: "officenumber",
-        message: this.name,
-        validate: function(val) {
-          return /[1-9]/i.test(val);
-        }
-      }
-    ])
+    .prompt(managerQ)
     .then(manager => {
       const man = new Manager(
         manager.name,
@@ -73,159 +45,94 @@ askForEmployee = () => {
     ])
     .then(val => {
       if (val.employeetype === "Engineer") {
-        inquirer
-          .prompt([
-            {
-              type: "input",
-              name: "name",
-              message: "What is the Engineer's Name?",
-              validate: function(val) {
-                return /[a-z]/i.test(val);
-              }
-            },
-            {
-              type: "input",
-              name: "idnumber",
-              message: this.name,
-              validate: function(val) {
-                return /[1-9]/i.test(val);
-              }
-            },
-            {
-              type: "input",
-              name: "email",
-              message: this.name,
-              validate: function(val) {
-                return /[a-z1-9]/i.test(val);
-              }
-            },
-            {
-              type: "input",
-              name: "github",
-              message: this.name,
-              validate: function(val) {
-                return /[a-z1-9]/i.test(val);
-              }
-            },
-            {
-              type: "confirm",
-              name: "choice",
-              message: "add another employee?"
-            }
-          ])
-          .then(engineer => {
-            if (engineer.choice) {
-              const eng = new Engineer(
-                engineer.name,
-                engineer.idnumber,
-                engineer.email,
-                engineer.github
-              );
-              employeeArray.push(eng);
-              askForEmployee();
-            } else {
-              const eng = new Engineer(
-                engineer.name,
-                engineer.idnumber,
-                engineer.email,
-                engineer.github
-              );
-              employeeArray.push(eng);
-
-              // generate cards
-              const employeeCards = employeeArray.map(employee => {
-                  return `<div class="card col col-sm-6">
-                            <h3>${employee.name}</h3>
-                            <h3>${employee.id}</h3>
-                            <h3>${employee.email}</h3>
-                            <h3>${employee.github}</h3>
-                            </div>`;
-                });
-              
-              console.log(employeeCards);
-
-              // trigger next step for writing html
-              html = generateHTML(managerArray, employeeCards);
-
-              fs.writeFile("./output/team.html", html, function(err) {
-                if (err) {
-                  return console.log(err);
-                }
-              });
-            }
-          });
+        inquirer.prompt(engineerQ).then(engineer => {
+          if (engineer.choice) {
+            const eng = new Engineer(
+              engineer.name,
+              engineer.idnumber,
+              engineer.email,
+              engineer.github
+            );
+            engineerArray.push(eng);
+            askForEmployee();
+          } else {
+            const eng = new Engineer(
+              engineer.name,
+              engineer.idnumber,
+              engineer.email,
+              engineer.github
+            );
+            engineerArray.push(eng);
+                loopandwrite();
+          }
+        });
       } else {
-        inquirer
-          .prompt([
-            {
-              type: "input",
-              name: "name",
-              message: "What is the Intern's Name?",
-              validate: function(val) {
-                return /[a-z]/i.test(val);
-              }
-            },
-            {
-              type: "input",
-              name: "idnumber",
-              message: this.name,
-              validate: function(val) {
-                return /[1-9]/i.test(val);
-              }
-            },
-            {
-              type: "input",
-              name: "email",
-              message: this.name,
-              validate: function(val) {
-                return /[a-z1-9]/i.test(val);
-              }
-            },
-            {
-              type: "input",
-              name: "school",
-              message: this.name,
-              validate: function(val) {
-                return /[a-z1-9]/i.test(val);
-              }
-            },
-            {
-              type: "confirm",
-              name: "choice",
-              message: "add another employee?"
-            }
-          ])
-          .then(intern => {
-            if (intern.choice) {
-              const int = new Intern(
-                intern.name,
-                intern.idnumber,
-                intern.email,
-                intern.school
-              );
-              employeeArray.push(int);
-              askForEmployee();
-            } else {
-              const int = new Intern(
-                intern.name,
-                intern.idnumber,
-                intern.email,
-                intern.school
-              );
-              employeeArray.push(int);
-
-              // trigger next step for writing html
-              html = generateHTML(managerArray, employeeArray);
-
-              fs.writeFile("./output/team.html", html, function(err) {
-                if (err) {
-                  return console.log(err);
-                }
-              });
-            }
-          });
+        inquirer.prompt(internQ).then(intern => {
+          if (intern.choice) {
+            const int = new Intern(
+              intern.name,
+              intern.idnumber,
+              intern.email,
+              intern.school
+            );
+            internArray.push(int);
+            askForEmployee();
+          } else {
+            const int = new Intern(
+              intern.name,
+              intern.idnumber,
+              intern.email,
+              intern.school
+            );
+            internArray.push(int);
+            loopandwrite();
+          }
+        });
       }
     });
 };
 
 askForManager();
+
+
+const loopandwrite = () => {
+
+      // generate cards
+      const internCards = internArray.map(employee => {
+        return `<div class="card col col-sm-6">
+                  <h3>${employee.name}</h3>
+                  <h3>${employee.id}</h3>
+                  <h3>${employee.email}</h3>
+                  <h3>${employee.school}</h3>
+                </div>`;
+      });
+
+      console.log(internCards);
+
+
+
+
+                  // generate cards
+    const engineerCards = engineerArray.map(employee => {
+        return `<div class="card col col-sm-6">
+                      <h3>${employee.name}</h3>
+                      <h3>${employee.id}</h3>
+                      <h3>${employee.email}</h3>
+                      <h3>${employee.github}</h3>
+                      </div>`;
+      });
+
+      console.log(engineerCards);
+
+      // trigger next step for writing html
+      html = generateHTML(managerArray, engineerCards, internCards);
+
+      fs.writeFile("./output/team.html", html, function(err) {
+        if (err) {
+          return console.log(err);
+        }
+      });
+
+}
+
+          
