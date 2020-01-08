@@ -1,4 +1,17 @@
-<!DOCTYPE html>
+// const employeeCards = (employeeArray) => {
+//   employeeArray.forEach((employee) => {
+
+//   return `<div class="card col col-sm-6">
+//             <h3>${employee.name}</h3>
+//             <h3>${employee.id}</h3>
+//             <h3>${employee.email}</h3>
+//             <h3>${employee.github}</h3>
+//           </div>`
+//   });
+// }
+
+const generateHTML = (managerArray, employeeCards) => {
+  return `<!DOCTYPE html>
 <html lang="en">
    <head>
       <meta charset="UTF-8" />
@@ -13,29 +26,20 @@
           <div class="card-deck">
 
             <div class="card col col-sm-6">
-              <h3>fss</h3>
-              <h3>fsfaf56</h3>
-              <h3>45d6sa</h3>
-              <h3>5032654147</h3>
+              <h3>${managerArray[0].name}</h3>
+              <h3>${managerArray[0].id}</h3>
+              <h3>${managerArray[0].email}</h3>
+              <h3>${managerArray[0].officeNumber}</h3>
             </div>
 
-            <div class="card col col-sm-6">
-            <h3>ababab</h3>
-            <h3>47</h3>
-            <h3>email</h3>
-            <h3>undefined</h3>
-            </div>  
-            
-            <div class="card col col-sm-6">
-            <h3>engine</h3>
-            <h3>333</h3>
-            <h3>email</h3>
-            <h3>undefined</h3>
-            </div>  
+            ${employeeCards}
 
           </div>
           <br>
       </div>
       </body>
       </html>
-      
+      `;
+};
+
+module.exports = generateHTML;
