@@ -1,14 +1,4 @@
-// const employeeCards = (employeeArray) => {
-//   employeeArray.forEach((employee) => {
-
-//   return `<div class="card col col-sm-6">
-//             <h3>${employee.name}</h3>
-//             <h3>${employee.id}</h3>
-//             <h3>${employee.email}</h3>
-//             <h3>${employee.github}</h3>
-//           </div>`
-//   });
-// }
+Manager = require("./lib/Manager");
 
 const generateHTML = (managerArray, engineerCards, internCards) => {
   return `<!DOCTYPE html>
@@ -26,15 +16,22 @@ const generateHTML = (managerArray, engineerCards, internCards) => {
           <div class="card-deck">
 
             <div class="card col col-sm-6">
+              <h3>Manager</h3>
               <h3>${managerArray[0].name}</h3>
               <h3>${managerArray[0].id}</h3>
               <h3>${managerArray[0].email}</h3>
               <h3>${managerArray[0].officeNumber}</h3>
             </div>
-
-            ${engineerCards}
-            ${internCards}
           </div>
+
+          <div class="card-deck">
+          ${engineerCards}
+          </div>
+
+          <div class="card-deck">
+          ${internCards}
+          </div>
+          
           <br>
       </div>
       </body>

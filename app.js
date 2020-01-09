@@ -7,16 +7,17 @@ const Intern = require("./lib/Intern");
 const managerQ = require("./lib/managerquestionset");
 const engineerQ = require("./lib/engineerquestionset");
 const internQ = require("./lib/internquestionset");
-
-// const util = require("util");
+// const loopandwrite = require("./lib/loopandwrite");
 const fs = require("fs");
+const chalk = require("chalk");
 const generateHTML = require("./generateHTML");
-
+const log = console.log;
 const managerArray = [];
 const engineerArray = [];
 const internArray = [];
 
 askForManager = () => {
+  log(chalk.magenta.bold(" - " + chalk.underline("HELLO!") + " - Let's start with the Team Manager."));
   return inquirer
     .prompt(managerQ)
     .then(manager => {
@@ -29,6 +30,7 @@ askForManager = () => {
       managerArray.push(man);
     })
     .then(() => {
+      log(chalk.magenta.bold(' - Next, choose an Employee'));
       askForEmployee();
     });
 };
@@ -64,6 +66,7 @@ askForEmployee = () => {
             );
             engineerArray.push(eng);
                 loopandwrite();
+                log(chalk.magenta.bold("Your team has been generated in ./output/Team.html"));
           }
         });
       } else {
@@ -86,6 +89,7 @@ askForEmployee = () => {
             );
             internArray.push(int);
             loopandwrite();
+            log(chalk.magenta.bold("Your team has been generated in ./output/Team.html"));
           }
         });
       }
@@ -97,7 +101,7 @@ askForManager();
 
 const loopandwrite = () => {
 
-      // generate cards
+                  // generate Intern cards
       const internCards = internArray.map(employee => {
         return `<div class="card col col-sm-6">
                   <h3>${employee.name}</h3>
@@ -107,12 +111,7 @@ const loopandwrite = () => {
                 </div>`;
       });
 
-      console.log(internCards);
-
-
-
-
-                  // generate cards
+                  // generate Engineer cards
     const engineerCards = engineerArray.map(employee => {
         return `<div class="card col col-sm-6">
                       <h3>${employee.name}</h3>
@@ -122,14 +121,12 @@ const loopandwrite = () => {
                       </div>`;
       });
 
-      console.log(engineerCards);
-
       // trigger next step for writing html
       html = generateHTML(managerArray, engineerCards, internCards);
 
       fs.writeFile("./output/team.html", html, function(err) {
         if (err) {
-          return console.log(err);
+          return log(err);
         }
       });
 
