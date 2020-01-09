@@ -1,10 +1,10 @@
-# -Software-Engineering-Team-Generator
+# Team-Generator (Software-Engineering based)
 ___________________________________________________________________________________________________________________________________________
 ___________________________________________________________________________________________________________________________________________
 
 **Description
 
-- Node CLI that takes in information about employees and generates an HTML webpage that displays summaries for each person.
+- Node CL application that takes in information about employees and generates an HTML webpage that displays summaries for each person.
 
 ____________________________________________________________________________________________________________________________________
 
