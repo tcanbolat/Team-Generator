@@ -10,7 +10,7 @@ const internQ = require("./lib/internquestionset");
 // const loopandwrite = require("./lib/loopandwrite");
 const fs = require("fs");
 const chalk = require("chalk");
-const generateHTML = require("./generateHTML");
+const generateHTML = require("./lib/generateHTML");
 const log = console.log;
 const managerArray = [];
 const engineerArray = [];
@@ -113,7 +113,7 @@ const loopandwrite = () => {
             <ul class="list-group list-group-flush text-dark">
             <li class="list-group-item">ID: ${employee.id}</li>
             <li class="list-group-item">Email: <a href="mailto: ${employee.email}" target="_blank">${employee.email}</a></li>
-            <li class="list-group-item">GitHub: ${employee.school}</li>
+            <li class="list-group-item">School: ${employee.school}</li>
           </ul>
         </div>
         </div>
