@@ -103,22 +103,40 @@ const loopandwrite = () => {
 
                   // generate Intern cards
       const internCards = internArray.map(employee => {
-        return `<div class="card col col-sm-6">
-                  <h3>${employee.name}</h3>
-                  <h3>${employee.id}</h3>
-                  <h3>${employee.email}</h3>
-                  <h3>${employee.school}</h3>
-                </div>`;
+        return `<div class="card text-white shadow-lg" style="max-width: 18rem;">
+        <div class="card-header bg-primary">
+          <h3>${employee.name}</h3>
+          <h4><i class="fas fa-graduation-cap"></i> ${employee.getRole()}</h4>
+        </div>
+        <div class="card-body bg-light">
+          <div class="card shadow-sm">
+            <ul class="list-group list-group-flush text-dark">
+            <li class="list-group-item">ID: ${employee.id}</li>
+            <li class="list-group-item">Email: <a href="mailto: ${employee.email}" target="_blank">${employee.email}</a></li>
+            <li class="list-group-item">GitHub: ${employee.school}</li>
+          </ul>
+        </div>
+        </div>
+      </div>`
       });
 
                   // generate Engineer cards
     const engineerCards = engineerArray.map(employee => {
-        return `<div class="card col col-sm-6">
-                      <h3>${employee.name}</h3>
-                      <h3>${employee.id}</h3>
-                      <h3>${employee.email}</h3>
-                      <h3>${employee.github}</h3>
-                      </div>`;
+        return `<div class="card text-white shadow-lg" style="max-width: 18rem;">
+        <div class="card-header bg-primary">
+          <h3>${employee.name}</h3>
+          <h4><i class="fas fa-glasses"></i> ${employee.getRole()}</h4>
+        </div>
+        <div class="card-body bg-light">
+          <div class="card shadow-sm">
+            <ul class="list-group list-group-flush text-dark">
+            <li class="list-group-item">ID: ${employee.id}</li>
+            <li class="list-group-item">Email: <a href="mailto: ${employee.email}" target="_blank">${employee.email}</a></li>
+            <li class="list-group-item">GitHub: <a href="https://github.com/${employee.github}" target="_blank">${employee.github}</a></li>
+          </ul>
+        </div>
+        </div>
+      </div>`
       });
 
       // trigger next step for writing html
