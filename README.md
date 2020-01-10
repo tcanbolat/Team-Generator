@@ -11,3 +11,7 @@ ________________________________________________________________________________
 **Instructions
 
 You will be prompted to enter information about a team of employees. You can choose as many employees and any mix of employee type for your team. Once your done the application will generate an html document that will neatly display a roster of your team.
+
+____________________________________________________________________________________________________________________________________
+
+![Gif](teamgeneratorGIF.gif)
