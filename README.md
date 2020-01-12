@@ -15,3 +15,5 @@ You will be prompted to enter information about a team of employees. You can cho
 ____________________________________________________________________________________________________________________________________
 
 ![Gif](teamgeneratorGIF.gif)
+
+![Example profile](./example-img.png)
