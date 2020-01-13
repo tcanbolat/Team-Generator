@@ -6,14 +6,25 @@ ________________________________________________________________________________
 
 - Node CL application that takes in information about employees and generates an HTML webpage that displays summaries for each person.
 
+- the app will take in one manager for the team and require you to at least add one more employee before you can generate an html.
+
+- You can add either Engineers or interns and can add as many as you like.
+
+- The team will generate in the order of manager, engineers, interns
+
+- The team file will be generated in the output folder of the repo
+
 ____________________________________________________________________________________________________________________________________
 
 **Instructions
 
-You will be prompted to enter information about a team of employees. You can choose as many employees and any mix of employee type for your team. Once your done the application will generate an html document that will neatly display a roster of your team.
-
+- fork and clone the repo
+- run npm install
+- run node app.js
 ____________________________________________________________________________________________________________________________________
 
+**GIF Demo**
 ![Gif](teamgeneratorGIF.gif)
 
+**Example picture of output file**
 ![Example profile](./example-img.png)
