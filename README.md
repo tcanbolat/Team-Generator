@@ -24,7 +24,7 @@ ________________________________________________________________________________
 
 **Validation**
 - this app also uses regex user validation
-- Employee name will only accept in Character a-z
+- Employee name will only accept character a-z
 - Employee id will only accept numbers
 - employee email will accept most formats - the validation pattern is from the ASP.NET code base.
 - school and github will accecpt both characters and numbers.
