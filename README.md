@@ -20,7 +20,20 @@ ________________________________________________________________________________
 
 - fork and clone the repo
 - run npm install
-- run node app.js
+- run node app.js   
+
+**Validation**
+- this app also uses regex user validation
+- Employee name will only accept in Character a-z
+- Employee id will only accept numbers
+- employee email will accept most formats - the validation pattern is from the ASP.NET code base.
+- school and github will accecpt both characters and numbers.
+- manager office number will accept the following formats
+   - 123-456-7890
+   - (123) 456-7890
+   - 123 456 7890
+   - 123.456.7890
+   - +91 (123) 456-7890
 ____________________________________________________________________________________________________________________________________
 
 **GIF Demo**
